@@ -1,0 +1,62 @@
+[project]
+name = "ipynb_sandbox"
+version = "0.1.0"
+license = {file = "LICENSE"}
+description = "various exploratory jupyter notebooks"
+readme = "README.md"
+requires-python = ">=3.13"
+
+authors =  [
+    {name = "Oliver Angelil", email = "oliver@ishango.ai"},
+]
+
+dependencies = [
+    "pyright>=1.1.394",
+    "pytest>=8.3.4",
+    "ruff>=0.9.5",
+    "ipykernel",
+    "numpy",
+    "google-genai",
+    "dotenv"
+]
+
+[project.urls]
+Homepage = "https://ishango.ai/"
+
+# [project.scripts]
+# ml = "ml.model:main"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    ]
+addopts = "-vv"
+# pythonpath = ["src/students/example/dagster/ml"]
+
+[tool.pyright]
+include = ["src"]
+exclude = []
+typeCheckingMode = "standard"
+colorOutput = true
+executionEnvironments= [
+    { root= "."}
+]
+reportMissingImports = false
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "C90", "I"]
+preview = true
+
+#this is a replacement for black. not sure whether to use it.
+#[tool.ruff.format]
+
+# required for a src and test layout
+[tool.uv]
+package = true
